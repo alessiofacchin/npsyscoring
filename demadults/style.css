@@ -1,0 +1,67 @@
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ background: #FAFAFA;
+ color: #333;
+}
+.container {
+ max-width: 600px;
+ margin: auto;
+ padding: 16px;
+}
+h1 {
+ text-align: center;
+ color: #3F51B5;
+ margin-bottom: 20px;
+}
+.card {
+ background: #FFFFFF;
+ padding: 16px;
+ border-radius: 12px;
+ box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+ margin-bottom: 16px;
+}
+label {
+ display: block;
+ margin-bottom: 12px;
+ font-size: 1rem;
+}
+input {
+ width: 100%;
+ padding: 8px;
+ margin-top: 4px;
+ border: 1px solid #CCC;
+ border-radius: 6px;
+}
+button {
+ width: 100%;
+ padding: 14px;
+ background: #3F51B5;
+ color: white;
+ border: none;
+ border-radius: 10px;
+ font-size: 1.1rem;
+}
+button:active {
+ background: #303F9F;
+}
+table {
+ width: 100%;
+ border-collapse: collapse;
+}
+th, td {
+ padding: 8px;
+ border-bottom: 1px solid #DDD;
+}
+.ref {
+ font-size: 0.75rem;
+ color: #555;
+ text-align: center;
+ margin-top: 20px;
+}
+.note {
+ font-size: 0.85rem;
+ color: #000;
+ margin-bottom: 10px;
+}
