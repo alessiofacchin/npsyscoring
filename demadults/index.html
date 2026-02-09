@@ -1,59 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adult Norms for DEM Test</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adult Norms for DEM Test</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="container">
-<h1>Adult Norms for DEM Test</h1>
+    <div class="container">
+        <h1>Adult Norms for DEM Test</h1>
+        
+        <section class="card">
+            <h3>Dati Demografici</h3>
+            <div class="input-group">
+                <label for="age">Età:</label>
+                <input type="number" id="age" placeholder="0">
+            </div>
+            <div class="input-group">
+                <label for="education">Istruzione (anni):</label>
+                <input type="number" id="education" placeholder="0">
+            </div>
+            <div class="input-group">
+                <label for="sex">Sesso:</label>
+                <select id="sex">
+                    <option value="Male">Maschio</option>
+                    <option value="Female">Femmina</option>
+                    <option value="Other">Altro</option>
+                </select>
+            </div>
+        </section>
 
-<section class="card">
-<h2>Demographic data</h2>
-<label>Age (20–79): <input id="age" type="number" min="20" max="79"></label>
-<label>Education (0–21): <input id="edu" type="number" min="0" max="21" step="1"></label>
-</section>
+        <section class="card">
+            <h3>Dati DEM Test</h3>
+            <div class="input-group">
+                <label>Tempo Card A (sec):</label>
+                <input type="number" id="card_a_time" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Tempo Card B (sec):</label>
+                <input type="number" id="card_b_time" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Tempo Card C (sec):</label>
+                <input type="number" id="card_c_time" step="0.1">
+            </div>
+            <div class="input-group">
+                <label>Errori Addizione:</label>
+                <input type="number" id="addition_error" value="0">
+            </div>
+            <div class="input-group">
+                <label>Errori Omissione:</label>
+                <input type="number" id="omission_error" value="0">
+            </div>
+            <div class="input-group">
+                <label>Errori Sostituzione:</label>
+                <input type="number" id="substitution_error" value="0">
+            </div>
+            <div class="input-group">
+                <label>Errori Trasposizione:</label>
+                <input type="number" id="transposition_error" value="0">
+            </div>
+            
+            <button id="submit">Calcola Risultati</button>
+        </section>
 
-<section class="card">
-<h2>Raw Times</h2>
-<label>Card A Time (s): <input id="cardA" type="number"></label>
-<label>Card B Time (s): <input id="cardB" type="number"></label>
-<label>Card C Time (s): <input id="cardC" type="number"></label>
-</section>
+        <section id="results-section" class="card" style="display:none;">
+            <h3>Risultati</h3>
+            <div class="table-container">
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>Variabile</th>
+                            <th>Valore Raw</th>
+                            <th>Score Corretto</th>
+                            <th>Equivalent Score</th>
+                            <th>Percentile</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
 
-<section class="card">
-<h2>Errors</h2>
-<label>Omission: <input id="errO" type="number"></label>
-<label>Addition: <input id="errA" type="number"></label>
-<label>Substitution: <input id="errS" type="number"></label>
-<label>Transposition: <input id="errT" type="number"></label>
-</section>
-
-<p class="note">Use point as decimal separator</p>
-
-<button id="calcBtn">Calculate</button>
-
-<section class="card output">
-<h2>Results</h2>
-<table id="resultsTable">
-<thead>
-<tr><th>Measure</th><th>Raw</th><th>ES</th><th>Percentile</th></tr>
-</thead>
-<tbody></tbody>
-</table>
-</section>
-
-<p class="ref">
-  Facchin, A., Maffioletti, S., & Daini, R. (2025). Developmental Eye Movement (DEM) Test in Adults: 
-  Age-Related Changes and Italian Normative Data. <i>Vision, 9(1)</i>, 10.<br>
-  <a href="https://doi.org/10.3390/vision9010010" target="_blank">
-    https://doi.org/10.3390/vision9010010
-  </a>
-</p>
-</div>
-
-<script src="script.js"></script>
+        <footer>
+            <small>
+                Facchin, A., Maffioletti, S., & Daini, R. (2025). Developmental Eye Movement (DEM) Test in Adults: Age-Related Changes and Italian Normative Data. Vision, 9(1), 10. 
+                <a href="https://doi.org/10.3390/vision9010010" target="_blank">https://doi.org/10.3390/vision9010010</a>
+            </small>
+        </footer>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
