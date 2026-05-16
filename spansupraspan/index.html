@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correzione Span e Supraspan di Corsi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Correzione Span e Supraspan di Corsi</h1>
+    
+    <div class="card">
+        <label>Età:
+            <input type="number" id="eta" min="18" max="90" placeholder="Es. 45">
+        </label>
+        
+        <label>Scolarità (anni):
+            <input type="number" id="scolarita" min="0" max="30" placeholder="Es. 13">
+        </label>
+        
+        <label>Sesso:
+            <select id="sesso">
+                <option value="Maschio">Maschio</option>
+                <option value="Femmina">Femmina</option>
+            </select>
+        </label>
+        
+        <label>Span:
+            <input type="number" id="span" min="0" max="9" step="any" placeholder="Da 0 a 9">
+        </label>
+        
+        <label>Supraspan:
+            <input type="number" id="supraspan" min="0" max="29.16" step="any" placeholder="Da 0 a 29.16">
+        </label>
+        
+        <label>Supraspan richiamo differito:
+            <input type="number" id="supraspan_diff" min="0" max="1.62" step="any" placeholder="Da 0 a 1.62">
+        </label>
+        
+        <button id="calcola">Calcola</button>
+    </div>
+
+    <div class="card" id="risultati-card" style="display: none;">
+        <h2>Risultati:</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test</th>
+                    <th>Punteggio Grezzo</th>
+                    <th>Punteggio Corretto</th>
+                    <th>Punteggio Equivalente</th>
+                    <th>Percentile</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Span</strong></td>
+                    <td id="out-span-grezzo">-</td>
+                    <td id="out-span-corr">-</td>
+                    <td id="out-span-eq">-</td>
+                    <td id="out-span-perc">-</td>
+                </tr>
+                <tr>
+                    <td><strong>Supraspan</strong></td>
+                    <td id="out-sup-grezzo">-</td>
+                    <td id="out-sup-corr">-</td>
+                    <td id="out-sup-eq">-</td>
+                    <td id="out-sup-perc">-</td>
+                </tr>
+                <tr>
+                    <td><strong>Supraspan Diff.</strong></td>
+                    <td id="out-supdiff-grezzo">-</td>
+                    <td id="out-supdiff-corr">-</td>
+                    <td id="out-supdiff-eq">-</td>
+                    <td id="out-supdiff-perc">-</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="ref">
+        Facchin, A., Pegoraro, S., Rigoli, M., Rizzi, E., Strina, V., Barera, S., ... & Guarnerio, C. (2024). Regression-based normative data for Corsi Span and Supraspan learning and recall among Italian adults. <em>Neurological Sciences</em>, 45(12), 5707–5718. <br>
+        DOI: <a href="https://doi.org/10.1007/s10072-024-07756-6" target="_blank">10.1007/s10072-024-07756-6</a>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
