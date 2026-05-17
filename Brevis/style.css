@@ -1,0 +1,107 @@
+body {
+ font-family: Arial, sans-serif;
+ margin: 0;
+ padding: 0;
+ background: #FAFAFA;
+ color: #333;
+}
+.container {
+ max-width: 650px;
+ margin: auto;
+ padding: 16px;
+}
+h1 {
+ text-align: center;
+ color: #3F51B5;
+ margin-bottom: 20px;
+}
+h3 {
+ color: #3F51B5;
+ margin-top: 0;
+ margin-bottom: 15px;
+}
+.card {
+ background: #FFFFFF;
+ padding: 20px;
+ border-radius: 12px;
+ box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+ margin-bottom: 16px;
+}
+label {
+ display: block;
+ margin-bottom: 12px;
+ font-size: 1rem;
+ font-weight: bold;
+}
+input, select {
+ width: 100%;
+ padding: 10px;
+ margin-top: 4px;
+ border: 1px solid #CCC;
+ border-radius: 6px;
+ box-sizing: border-box; 
+ font-size: 1rem;
+}
+button {
+ width: 100%;
+ padding: 14px;
+ background: #3F51B5;
+ color: white;
+ border: none;
+ border-radius: 10px;
+ font-size: 1.1rem;
+ cursor: pointer;
+ transition: background 0.2s;
+ font-weight: bold;
+}
+button:active {
+ background: #303F9F;
+}
+table {
+ width: 100%;
+ border-collapse: collapse;
+ margin-top: 8px;
+}
+th, td {
+ padding: 10px 8px;
+ border-bottom: 1px solid #DDD;
+ text-align: left;
+}
+th {
+ background-color: #f2f2f2;
+ font-weight: bold;
+ color: #333;
+}
+/* Ottimizzazione specifica per gli input dentro la griglia dei dati */
+table input {
+ width: 100%;
+ padding: 6px;
+ margin: 0;
+ border: 1px solid #DDD;
+ border-radius: 4px;
+ font-size: 0.95rem;
+ text-align: center;
+}
+table input:focus {
+ border-color: #3F51B5;
+ outline: none;
+}
+.ref {
+ font-size: 0.75rem;
+ color: #555;
+ text-align: center;
+ margin-top: 20px;
+ line-height: 1.4;
+}
+.ref a {
+ color: #3F51B5;
+ text-decoration: none;
+}
+.ref a:hover {
+ text-decoration: underline;
+}
+.note {
+ font-size: 0.85rem;
+ color: #666;
+ margin-bottom: 10px;
+}
