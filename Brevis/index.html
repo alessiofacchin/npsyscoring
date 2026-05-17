@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BReViS Test Scoring</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>BReViS Test Scoring</h1>
+
+    <div class="card">
+        <h3>Dati Partecipante</h3>
+        <label>Age (20–79)
+            <input type="number" id="age" value="30" min="20" max="79" step="1">
+        </label>
+        <label>Education (years, 3–26)
+            <input type="number" id="education" value="10" min="3" max="26" step="1">
+        </label>
+        <label>Sex
+            <select id="sex">
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="card">
+        <h3>Enter raw data for each card</h3>
+        <div style="overflow-x: auto;">
+            <table id="input-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Card 1</th>
+                        <th>Card 2</th>
+                        <th>Card 3</th>
+                        <th>Card 4</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Time</strong></td>
+                        <td><input type="number" id="t_1" value="0" min="0" step="any"></td>
+                        <td><input type="number" id="t_2" value="0" min="0" step="any"></td>
+                        <td><input type="number" id="t_3" value="0" min="0" step="any"></td>
+                        <td><input type="number" id="t_4" value="0" min="0" step="any"></td>
+                    </tr>
+                    <tr>
+                        <td>Omissions</td>
+                        <td><input type="number" id="o_1" placeholder="0" min="0"></td>
+                        <td><input type="number" id="o_2" placeholder="0" min="0"></td>
+                        <td><input type="number" id="o_3" placeholder="0" min="0"></td>
+                        <td><input type="number" id="o_4" placeholder="0" min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Self-corrections</td>
+                        <td><input type="number" id="c_1" placeholder="0" min="0"></td>
+                        <td><input type="number" id="c_2" placeholder="0" min="0"></td>
+                        <td><input type="number" id="c_3" placeholder="0" min="0"></td>
+                        <td><input type="number" id="c_4" placeholder="0" min="0"></td>
+                    </tr>
+                    <tr>
+                        <td>Substitutions</td>
+                        <td><input type="number" id="s_1" placeholder="0" min="0"></td>
+                        <td><input type="number" id="s_2" placeholder="0" min="0"></td>
+                        <td><input type="number" id="s_3" placeholder="0" min="0"></td>
+                        <td><input type="number" id="s_4" placeholder="0" min="0"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <button id="calculate-btn">Calculate results</button>
+    </div>
+
+    <div class="card" id="results-card" style="display: none;">
+        <h3>Performance Time per Card</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Card</th>
+                    <th>Performance Time</th>
+                </tr>
+            </thead>
+            <tbody id="perf-time-tbody"></tbody>
+        </table>
+
+        <br>
+        <h3>Calculated Index and Scores</h3>
+        <div style="overflow-x: auto;">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Index</th>
+                        <th>Value</th>
+                        <th>Corrected Score</th>
+                        <th>Equivalent Score</th>
+                        <th>Percentile</th>
+                    </tr>
+                </thead>
+                <tbody id="indices-tbody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="ref">
+        Facchin, A., Simioni, M., Maffioletti, S., & Daini, R. (2023). <br>
+        <i>Broken Ring enVision Search (BReViS): A New Clinical Test of Attention to Assess the Effect of Layout and Crowding on Visual Search.</i><br>
+        Brain Sciences, 13(3), 494. <a href="https://doi.org/10.3390/brainsci13030494" target="_blank">https://doi.org/10.3390/brainsci13030494</a>
+    </div>
+</div>
+
+</body>
+</html>
