@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brentano Illusion Test (BRIT) Scoring</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Brentano Illusion Test (BRIT)</h1>
+        
+        <div class="card">
+            <h3>Dati Soggetto</h3>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+                <label>Età (anni):
+                    <input type="number" id="paziente-eta" value="63" min="0" max="99">
+                </label>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Inserimento Valori</h3>
+            <p class="note">Inserisci i valori misurati per ciascuna prova con il riferimento zero al centro della linea, valori positivi a destra e negativi a sinistra.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Numero stimolo</th>
+                        <th style="width: 45%;">Simbolo Stimolo</th>
+                        <th style="width: 30%;">Valore (mm)</th>
+                    </tr>
+                </thead>
+                <tbody id="input-table-body">
+                    </tbody>
+            </table>
+            <br>
+            <button id="btn-calcola">Calcola Scoring</button>
+        </div>
+
+        <div id="results-card" class="card" style="display: none;">
+            <h2>Risultati</h2>
+            
+            <h3>Valori medi bisezione stimoli</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Illusione Sinistra Piccola</th>
+                        <th>Linea Piccola</th>
+                        <th>Illusione Destra Piccola</th>
+                        <th>Illusione Sinistra Grande</th>
+                        <th>Linea Grande</th>
+                        <th>Illusione Destra Grande</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="row-medie" style="text-align: center;">
+                        </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h3>Effetti Illusori (Illusione - Linea)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dimensione Linea</th>
+                        <th>Sinistra</th>
+                        <th>Destra</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Piccola (80mm)</strong></td>
+                        <td id="eff-sin-piccola">-</td>
+                        <td id="eff-des-piccola">-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grande (160mm)</strong></td>
+                        <td id="eff-sin-grande">-</td>
+                        <td id="eff-des-grande">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h3>Tabella degli Indici Globali</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Punteggio</th>
+                        <th>LB80</th>
+                        <th>LB160</th>
+                        <th>LE</th>
+                        <th>SIE80</th>
+                        <th>SIE160</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Grezzo</strong></td>
+                        <td id="obs-lb80">-</td>
+                        <td id="obs-lb160">-</td>
+                        <td id="obs-le">-</td>
+                        <td id="obs-sie80">-</td>
+                        <td id="obs-sie160">-</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Corretto</strong></td>
+                        <td id="cor-lb80">-</td>
+                        <td id="cor-lb160">-</td>
+                        <td id="cor-le">-</td>
+                        <td id="cor-sie80">-</td>
+                        <td id="cor-sie160">-</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h3>Tabella Valori Normativi di Riferimento (mm)</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Cut-off</th>
+                        <th>LB80</th>
+                        <th>LB160</th>
+                        <th>LE</th>
+                        <th>SIE80</th>
+                        <th>SIE160</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Left (Sinistro)</strong></td>
+                        <td>-3.2</td>
+                        <td>-4.8</td>
+                        <td>-6.5</td>
+                        <td>-6.4</td>
+                        <td>-10.2</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Right (Destro)</strong></td>
+                        <td>3.4</td>
+                        <td>4.9</td>
+                        <td>6.7</td>
+                        <td>7.8</td>
+                        <td>11.8</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+
+            <h3>Valutazione dei Dati Corretti</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Variabile</th>
+                        <th>Valore Corretto</th>
+                        <th>Esito Valutazione</th>
+                    </tr>
+                </thead>
+                <tbody id="valutazione-rows">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="ref">
+            Facchin, A., Vallar, G., & Daini, R. (2021). The Brentano Illusion Test (BRIT): An implicit task of perceptual processing for the assessment of visual field defects in neglect patients. <em>Neuropsychological Rehabilitation</em>, 31(1), 39-56. <a href="https://doi.org/10.1080/09602011.2019.1655067" target="_blank">https://doi.org/10.1080/09602011.2019.1655067</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
