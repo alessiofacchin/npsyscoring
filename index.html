@@ -17,6 +17,13 @@
       color: #333;
     }
 
+    /* --- MODIFICA QUI: Aggiunto il controllo del contenitore --- */
+    .container {
+      max-width: 600px;  /* Limita la larghezza su desktop */
+      margin: 0 auto;    /* Centra il contenitore nella pagina */
+      padding: 1rem;     /* Spazio interno di sicurezza */
+    }
+
     h1 {
       text-align: center;
       margin-bottom: 1.5rem;
@@ -48,23 +55,23 @@
     }
 
     a.button {
-    display: block;
-    padding: 1rem;
-    text-align: center;
-    text-decoration: none;
-    background: #3F51B5;
-    color: white !important;
-    border-radius: 10px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: 0.2s;
-    font-family: 'Ubuntu', system-ui, sans-serif;
+      display: block;
+      padding: 1rem;
+      text-align: center;
+      text-decoration: none;
+      background: #3F51B5;
+      color: white !important;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      transition: 0.2s;
+      font-family: 'Ubuntu', system-ui, sans-serif;
     }
 
-a.button:visited,
-a.button:link {
-  color: white;
-}
+    a.button:visited,
+    a.button:link {
+      color: white;
+    }
 
     a.button:hover {
       background: #303F9F;
