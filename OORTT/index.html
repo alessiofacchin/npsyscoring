@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoring test OORTT</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Scoring test OORTT</h1>
+
+    <div class="card">
+        <div class="note"><strong>Dati Demografici</strong></div>
+        <label>Età (Anni):
+            <input type="number" id="eta" min="15" max="95" placeholder="Es. 45">
+        </label>
+        <label>Scolarità (Anni):
+            <input type="number" id="scolarita" min="1" max="25" placeholder="Es. 13">
+        </label>
+        <label>Sesso:
+            <select id="sesso">
+                <option value="" disabled selected>Seleziona Sesso</option>
+                <option value="1">Maschio</option>
+                <option value="0">Femmina</option>
+            </select>
+        </label>
+    </div>
+
+    <div class="card">
+        <div class="note"><strong>Punteggi Grezzi (ms)</strong></div>
+        <label>Simple Reaction Time (SRT):
+            <input type="number" id="srt_raw" placeholder="Es. 320" step="0">
+        </label>
+        <label>Go / No-Go (GNG):
+            <input type="number" id="gng_raw" placeholder="Es. 450" step="0">
+        </label>
+        
+        <div class="note" style="margin-top: 15px;"><strong>Four Position Reaction Times (4PRT)</strong></div>
+        <label>Left Superior (LS):
+            <input type="number" id="ls_raw" placeholder="Es. 380" step="0">
+        </label>
+        <label>Right Superior (RS):
+            <input type="number" id="rs_raw" placeholder="Es. 360" step="0">
+        </label>
+        <label>Left Inferior (LI):
+            <input type="number" id="li_raw" placeholder="Es. 390" step="0">
+        </label>
+        <label>Right Inferior (RI):
+            <input type="number" id="ri_raw" placeholder="Es. 350" step="0">
+        </label>
+    </div>
+
+    <button onclick="calcola()">Calcola</button>
+
+    <div class="card" id="results">
+        <div class="note"><strong>Tabella Risultati</strong></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test</th>
+                    <th>Grezzo</th>
+                    <th>Corretto</th>
+                    <th>PE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SRT</strong></td>
+                    <td id="srt_g">-</td>
+                    <td id="srt_c">-</td>
+                    <td id="srt_pe">-</td>
+                </tr>
+                <tr>
+                    <td><strong>GNG</strong></td>
+                    <td id="gng_g">-</td>
+                    <td id="gng_c">-</td>
+                    <td id="gng_pe">-</td>
+                </tr>
+                <tr>
+                    <td><strong>4PRT - LS</strong></td>
+                    <td id="ls_g">-</td>
+                    <td id="ls_c">-</td>
+                    <td id="ls_pe">-</td>
+                </tr>
+                <tr>
+                    <td><strong>4PRT - RS</strong></td>
+                    <td id="rs_g">-</td>
+                    <td id="rs_c">-</td>
+                    <td id="rs_pe">-</td>
+                </tr>
+                <tr>
+                    <td><strong>4PRT - LI</strong></td>
+                    <td id="li_g">-</td>
+                    <td id="li_c">-</td>
+                    <td id="li_pe">-</td>
+                </tr>
+                <tr>
+                    <td><strong>4PRT - RI</strong></td>
+                    <td id="ri_g">-</td>
+                    <td id="ri_c">-</td>
+                    <td id="ri_pe">-</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div style="margin-top: 15px;">
+            <strong>Delta (Asimmetria):</strong> <span id="delta_val"></span> ms <br>
+            <span id="delta_status" class="note"></span>
+        </div>
+    </div>
+
+    <div class="ref">
+        Rigoli, M., Facchin, A., Cardile, D., Beschin, N., & Luzzatti, C. (2021). Open-source open-access reaction time test (OORTT): an easy tool to assess reaction times. Neurological Sciences, 42(6), 2461-2469.<br>
+        <a href="https://doi.org/10.1007/s10072-020-04839-y" target="_blank">https://doi.org/10.1007/s10072-020-04839-y</a>
+    </div>
+</div>
+
+</body>
+</html>
