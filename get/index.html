@@ -1,1 +1,132 @@
-read text
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173b3b">
+  <meta name="description" content="Calculate the Glare Effect Test point of subjective equivalence, logistic slope and Hosmer–Lemeshow goodness of fit from 2AFC card classifications.">
+  <title>Glare Effect Test · PSE calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="Glare Effect Test home"><span class="brand-symbol" aria-hidden="true">✳</span> Glare Effect Test <span class="wordmark-divider"></span><span class="wordmark-caption">Perception tools</span></a>
+    <span class="local-badge"><span aria-hidden="true"></span> Runs in your browser</span>
+  </header>
+
+  <main>
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">A luminosity test</p>
+      <h1 id="page-title">Glare Effect Test· PSE calculator<span>.</span></h1>
+      <p class="intro-copy">From card classifications to a perceptual threshold. Estimate the PSE, logistic slope and goodness of fit in one step.</p>
+    </section>
+
+    <div class="workspace">
+      <section class="panel input-panel" aria-labelledby="input-title">
+        <div class="panel-heading"><h2 id="input-title">Set up your analysis</h2><span class="step-label">01 / INPUT</span></div>
+        <form id="analysis-form" novalidate>
+          <div class="field">
+            <label for="card-count">Number of intermediate cards</label>
+            <div class="count-row"><input id="card-count" name="cardCount" type="number" value="99" min="3" max="100" step="1" inputmode="numeric" required aria-describedby="count-hint"><span>cards</span></div>
+            <p class="hint" id="count-hint">Exclude the two reference cards. One response per card.</p>
+          </div>
+
+          <details class="deck-settings" id="deck-settings">
+            <summary>Card numbering &amp; fit settings</summary>
+            <div class="settings-content">
+              <label for="deck-mode">Card values used for the regression</label>
+              <select id="deck-mode" name="deckMode">
+                <option value="consecutive">Consecutive values: 1 to N</option>
+                <option value="custom">Custom values from the original deck</option>
+              </select>
+              <p class="hint">For a reduced deck, use custom values to preserve the original intensity scale. The number of cards alone does not identify which cards were shown.</p>
+              <div id="custom-deck-field" hidden>
+                <label for="administered-cards">All intermediate cards presented</label>
+                <textarea id="administered-cards" rows="4" spellcheck="false" placeholder="Enter every presented card value, separated by commas" aria-describedby="custom-hint"></textarea>
+                <p class="hint" id="custom-hint">Exactly N distinct integers from 1 to 100. Exclude reference cards 0 and 101.</p>
+                <button type="button" id="even-deck-button" class="text-button" hidden>Use even cards: 2, 4, …, 98</button>
+              </div>
+              <label for="hl-groups">Hosmer–Lemeshow groups</label>
+              <input id="hl-groups" type="number" min="3" max="20" value="10" step="1" inputmode="numeric" aria-describedby="groups-hint">
+              <p class="hint" id="groups-hint">10 by default; quantile groups of fitted probabilities. The papers do not specify this setting.</p>
+            </div>
+          </details>
+          <p class="deck-summary" id="deck-summary">Analysis values: 1–99 · references excluded</p>
+
+          <fieldset class="reference-field">
+            <legend>Which cards are you entering?</legend>
+            <div class="reference-options">
+              <label class="reference-option">
+                <input type="radio" name="responseType" value="no-glare">
+                <span class="reference-tile">
+                  <span class="reference-image no-glare" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                  <span class="reference-name">No effect</span><span class="reference-caption">Similar to card 0</span><span class="choice-dot" aria-hidden="true"></span>
+                </span>
+              </label>
+              <label class="reference-option">
+                <input type="radio" name="responseType" value="glare" checked>
+                <span class="reference-tile">
+                  <span class="reference-image full-glare" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+                  <span class="reference-name">Full glare</span><span class="reference-caption">Similar to last card</span><span class="choice-dot" aria-hidden="true"></span>
+                </span>
+              </label>
+            </div>
+            <p class="hint">Reference illustrations are schematic.</p>
+          </fieldset>
+
+          <div class="field response-field">
+            <label for="response-cards" id="response-label">Cards classified as full glare</label>
+            <textarea id="response-cards" name="responses" rows="7" spellcheck="false" placeholder="Enter card numbers separated by commas" aria-describedby="response-hint input-count"></textarea>
+            <div class="input-meta"><span>Comma-separated card numbers</span><span id="input-count">0 entered</span></div>
+            <p class="hint" id="response-hint">Every presented card not listed here is assigned to the other category. Only calculate after all cards have been classified.</p>
+          </div>
+
+          <div id="input-error" class="message error" role="alert" hidden></div>
+          <button type="submit" class="button primary" id="calculate-button">Calculate <span aria-hidden="true">↗</span></button>
+          <div class="secondary-actions"><button type="button" class="text-button" id="example-button">Load example</button><button type="button" class="text-button muted" id="clear-button">Clear</button></div>
+          <p class="privacy-note">Your entries stay in this page. No uploads, accounts or external libraries.</p>
+        </form>
+      </section>
+
+      <section class="analysis-panel" aria-labelledby="results-title">
+        <div class="results-heading"><h2 id="results-title">Analysis</h2><span id="analysis-status" class="status-badge" role="status">Awaiting data</span></div>
+        <div id="results-content" aria-live="polite" aria-atomic="true">
+          <div class="metrics">
+            <article class="metric"><p class="metric-label">PSE</p><p class="metric-value" id="pse-value">—</p><p class="metric-subtitle" id="pse-detail">Point of subjective equivalence</p></article>
+            <article class="metric"><p class="metric-label">LOGISTIC SLOPE</p><p class="metric-value" id="slope-value">—</p><p class="metric-subtitle" id="slope-detail">β₁ · log-odds per card unit</p></article>
+            <article class="metric"><p class="metric-label">HOSMER–LEMESHOW</p><p class="metric-value hl-value" id="hl-value">—</p><p class="metric-subtitle" id="hl-detail">Goodness-of-fit p-value</p></article>
+          </div>
+          <div id="fit-messages" class="fit-messages" hidden></div>
+        </div>
+
+        <section class="panel plot-panel" aria-labelledby="plot-title">
+          <div class="plot-heading"><div><h3 id="plot-title">Psychometric function</h3><p>Probability of a “full glare” response</p></div><button type="button" id="download-plot" class="icon-button" disabled aria-label="Download plot as SVG" title="Download SVG"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/></svg></button></div>
+          <div id="plot-container" class="plot-container"></div>
+          <div class="plot-legend"><span><i class="legend-point"></i>Observed response</span><span><i class="legend-curve"></i>Logistic fit</span><span><i class="legend-pse"></i>PSE at p = 0.5</span></div>
+          <div class="plot-footer"><span id="trial-summary">Enter classifications to fit the curve.</span><button type="button" class="text-button" id="download-results" disabled>Export CSV</button></div>
+        </section>
+
+        <details class="panel model-details" id="model-details">
+          <summary>Model &amp; calculation details</summary>
+          <div class="model-content">
+            <p>A binomial logistic regression is fitted by maximum likelihood to one response per intermediate card. The two reference cards are never included as observations.</p>
+            <div class="formula">p(full glare | x) = 1 / [1 + exp(−(β₀ + β₁x))]<br>PSE = −β₀ / β₁</div>
+            <p><strong>Response coding.</strong> No effect = 0; full glare = 1. When you enter the no-effect cards, the app assigns 1 to the remaining cards. The PSE is the 50% category boundary, without a 0.5 guessing floor.</p>
+            <p><strong>Scale and slope.</strong> x is the actual card value specified above; values are not automatically normalized. The displayed slope is the signed logit coefficient β₁, not the probability derivative (which is β₁/4 at the PSE). Consecutive numbering of a shorter deck changes the scale of both PSE and slope.</p>
+            <p><strong>Hosmer–Lemeshow.</strong> Predicted probabilities are divided by quantile cut points (R type 7, right-closed intervals; tied cut points are merged). Observed and expected counts for both categories give χ², with G − 2 degrees of freedom for G nonempty groups. This follows the grouping convention of <a href="https://peter.solymos.org/ResourceSelection/reference/hoslem.test.html" target="_blank" rel="noopener noreferrer">ResourceSelection::hoslem.test</a>. The default is 10 requested groups. A small p-value indicates evidence of lack of fit; a large p-value does not establish a good fit. Sparse expected counts can make this approximation unreliable.</p>
+            <p><strong>Estimation limits.</strong> A single response category or complete separation has no finite ordinary maximum-likelihood solution. A flat function has no identifiable PSE. Negative slopes and PSEs outside the tested range are flagged. The app does not add artificial trials, penalize coefficients or clamp the PSE to the card range.</p>
+            <p><strong>Relation to the papers.</strong> Facchin et al. (2017) describe 99 classified cards with reference labels 0 and 101. Maddaluno et al. (2019) use 49 intermediate cards and explicitly specify a logit model and the Hosmer–Lemeshow test. Neither article lists the exact 49-card subset or specifies the number of goodness-of-fit groups. This implementation makes those choices explicit. The negative mean slopes printed in Facchin et al. are not imposed: the sign here follows the stated coding, 1 = full glare, against increasing card values.</p>
+            <div id="fitted-model" class="fitted-model" hidden></div>
+            <details id="group-details" hidden><summary>Inspect goodness-of-fit groups</summary><div class="table-scroll"><table><caption>Observed and expected counts by fitted-probability group</caption><thead><tr><th scope="col">Group</th><th scope="col">n</th><th scope="col">Observed 0</th><th scope="col">Expected 0</th><th scope="col">Observed 1</th><th scope="col">Expected 1</th></tr></thead><tbody id="group-table"></tbody></table></div></details>
+          </div>
+        </details>
+
+        <footer class="references"><p class="eyebrow">METHOD REFERENCES</p><p>Facchin, A., Daini, R., &amp; Zavagno, D. (2017). The Glare Effect Test and the Impact of Age on Luminosity Thresholds. <em>Frontiers in Psychology, 8</em>, 1132. <a href="https://doi.org/10.3389/fpsyg.2017.01132" target="_blank" rel="noopener noreferrer">doi:10.3389/fpsyg.2017.01132 ↗</a></p><p>Maddaluno, O., et al. (2019). Evidence of top-down modulation of the Brentano illusion but not of the glare effect by transcranial direct current stimulation. <em>Experimental Brain Research</em>. <a href="https://doi.org/10.1007/s00221-019-05577-0" target="_blank" rel="noopener noreferrer">doi:10.1007/s00221-019-05577-0 ↗</a></p></footer>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer"><span>GET / PSE CALCULATOR</span><span>One participant · one session</span></footer>
+  <noscript><p class="noscript">Please enable JavaScript to use the calculator. All calculations run locally in your browser.</p></noscript>
+</body>
+</html>
